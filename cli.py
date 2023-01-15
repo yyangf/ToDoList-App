@@ -1,3 +1,4 @@
+# command line interface
 from functions import get_todos, write_todos
 import time
 
