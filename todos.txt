@@ -1,5 +1,7 @@
 check
 drink water
-make pizza
-eat more delicious
-take a shower
+Eat delicious
+Learning
+Python application
+
+
