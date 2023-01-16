@@ -1,7 +1,4 @@
-check
 drink water
 Eat delicious
 Learning
 Python application
-
-
