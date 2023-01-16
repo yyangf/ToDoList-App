@@ -1,17 +1,24 @@
 import functions
 import PySimpleGUI as sg
 import time
+import os
+
+if not os.path.exists("todos.txt"):
+    with open("todos.txt", "w") as file:
+        pass
 
 sg.theme("BlueMono")
 
 clock = sg.Text("", key="clock")
 label = sg.Text("Type in a to-do")
 input_box = sg.InputText(tooltip="Enter todo", key="todo")
-add_button = sg.Button("Add")
+add_button = sg.Button(size=2, image_source="add.png", mouseover_colors="LightBlue",
+                       tooltip="Add Todo", key="Add")
 list_box = sg.Listbox(values=functions.get_todos(), key="todos",
                       enable_events=True, size=[45, 10])
 edit_button = sg.Button("Edit")
-complete_button = sg.Button("Complete")
+complete_button = sg.Button(size=2, image_source="complete.png",  mouseover_colors="LightBlue",
+                            tooltip="Oh yeah! Complete!", key="Complete")
 exit_button = sg.Button("Exit")
 
 window = sg.Window("My To-Do App",
@@ -19,7 +26,7 @@ window = sg.Window("My To-Do App",
                            [input_box, add_button],
                            [list_box, edit_button, complete_button],
                            [exit_button]],
-                   font=('Helvetica', 20))
+                   font=('Helvetica', 13))
 
 while True:
     event, values = window.read(timeout=10)
@@ -49,7 +56,7 @@ while True:
                 todos.remove(todo_to_complete)
                 functions.write_todos(todos)
                 window["todos"].update(values=todos)
-                window["todo"].update(values="")
+                window["todo"].update(value="")
             except IndexError:
                 sg.popup("Please select an item first.", font=('Helvetica', 20))
         case "Exit":
